@@ -1,0 +1,159 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="theme-color" content="#10131a">
+    <meta name="description" content="A modern scientific calculator for mobile and desktop.">
+
+    <title>Scientific Calculator</title>
+
+    <link rel="manifest" href="./manifest.json">
+    <link rel="icon" href="./icon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="./style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <script src="./script.js" defer></script>
+    <script src="./app.js" defer></script>
+</head>
+
+<body>
+    <main class="calculator-app">
+
+        <header class="app-header">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+
+                <div class="brand-text">
+                    <h1>Scientific</h1>
+                    <p>CALCULATOR</p>
+                </div>
+            </div>
+
+            <div class="header-actions">
+                <button type="button" class="icon-button" id="history-toggle" aria-label="Calculation history">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                </button>
+
+                <button type="button" class="icon-button" id="theme-toggle" aria-label="Switch theme">
+                    <i class="fa-solid fa-moon"></i>
+                </button>
+            </div>
+        </header>
+
+        <section class="calculator-card">
+
+            <div class="calculator-toolbar">
+                <div class="angle-switch" aria-label="Angle mode">
+                    <button type="button" class="mode-button active" id="degree-mode" aria-pressed="true">DEG</button>
+
+                    <button type="button" class="mode-button" id="radian-mode" aria-pressed="false">RAD</button>
+                </div>
+
+                <div class="toolbar-actions">
+                    <button type="button" class="small-action" id="second-toggle" aria-pressed="false">2nd</button>
+
+                    <button type="button" class="small-action" id="memory-clear">MC</button>
+
+                    <button type="button" class="small-action" id="memory-recall">MR</button>
+                </div>
+            </div>
+
+            <div class="calculator-display">
+                <div class="expression-display" id="expression" aria-label="Current expression"></div>
+
+                <div class="result-row">
+                    <span class="result-display" id="result" aria-live="polite" aria-atomic="true">0</span>
+
+                    <button type="button" class="copy-button" id="copy-result" aria-label="Copy result">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+
+                <div class="display-status" id="display-status">Ready</div>
+            </div>
+
+            <div class="keypad" id="keypad">
+                <button type="button" class="key function-key" data-action="inverse">x⁻¹</button>
+                <button type="button" class="key function-key" data-action="square">x²</button>
+                <button type="button" class="key function-key" data-action="power">xʸ</button>
+                <button type="button" class="key function-key" data-action="sqrt">√x</button>
+                <button type="button" class="key function-key" data-action="parentheses">( )</button>
+                <button type="button" class="key function-key" data-action="percent">%</button>
+
+                <button type="button" class="key function-key" data-action="sin">sin</button>
+                <button type="button" class="key function-key" data-action="cos">cos</button>
+                <button type="button" class="key function-key" data-action="tan">tan</button>
+                <button type="button" class="key function-key" data-action="log">log</button>
+                <button type="button" class="key function-key" data-action="ln">ln</button>
+                <button type="button" class="key function-key" data-action="factorial">n!</button>
+
+                <button type="button" class="key function-key" data-action="pi">π</button>
+                <button type="button" class="key function-key" data-action="e">e</button>
+                <button type="button" class="key function-key" data-action="ans">Ans</button>
+                <button type="button" class="key function-key" data-action="absolute">|x|</button>
+                <button type="button" class="key function-key" data-action="exp">EXP</button>
+                <button type="button" class="key function-key" data-action="sign">±</button>
+
+                <button type="button" class="key utility-key" data-action="clear">AC</button>
+                <button type="button" class="key utility-key" data-action="delete">
+                    <i class="fa-solid fa-delete-left"></i>
+                </button>
+                <button type="button" class="key operator-key" data-value="÷">÷</button>
+                <button type="button" class="key operator-key" data-value="×">×</button>
+                <button type="button" class="key number-key" data-value="7">7</button>
+                <button type="button" class="key number-key" data-value="8">8</button>
+
+                <button type="button" class="key number-key" data-value="9">9</button>
+                <button type="button" class="key operator-key" data-value="-">−</button>
+                <button type="button" class="key number-key" data-value="4">4</button>
+                <button type="button" class="key number-key" data-value="5">5</button>
+                <button type="button" class="key number-key" data-value="6">6</button>
+                <button type="button" class="key operator-key" data-value="+">+</button>
+
+                <button type="button" class="key number-key" data-value="1">1</button>
+                <button type="button" class="key number-key" data-value="2">2</button>
+                <button type="button" class="key number-key" data-value="3">3</button>
+                <button type="button" class="key number-key" data-value="0">0</button>
+                <button type="button" class="key number-key" data-value=".">.</button>
+                <button type="button" class="key equals-key" data-action="calculate">=</button>
+            </div>
+        </section>
+
+        <section class="history-panel" id="history-panel" aria-label="Calculation history" hidden>
+            <div class="history-header">
+                <div>
+                    <h2>History</h2>
+                    <p>Your recent calculations</p>
+                </div>
+
+                <button type="button" class="icon-button" id="history-close" aria-label="Close history">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="history-list" id="history-list">
+                <p class="empty-history">Your calculations will appear here.</p>
+            </div>
+
+            <button type="button" class="clear-history-button" id="history-clear">
+                <i class="fa-regular fa-trash-can"></i> Clear history
+            </button>
+        </section>
+
+        <footer class="app-footer">
+            <span><i class="fa-solid fa-calculator"></i> Scientific Calculator</span>
+            <span>Precision at your fingertips.</span>
+        </footer>
+
+    </main>
+
+</body>
+
+</html>
